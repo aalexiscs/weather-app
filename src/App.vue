@@ -1,6 +1,6 @@
 <template>
-  <div class="min-h-screen bg-gray-100 dark:bg-gray-900 transition-colors duration-300 pb-10">
-    <div class="max-w-md mx-auto px-4 pt-8">
+  <div class="min-h-screen bg-gray-100 dark:bg-gray-900 transition-colors duration-300 pb-10" style="padding-top: env(safe-area-inset-top);">
+    <div class="max-w-md mx-auto px-4 pt-4">
       
       <!-- Header with Theme Toggle -->
       <div class="flex justify-between items-center mb-6">
@@ -106,18 +106,6 @@ const currentCoords = ref(null);
 // Default coordinates (Alhueycito, Sin.)
 const DEFAULT_COORDS = { lat: 25.6346498, lon: -108.0484821, name: 'Alhueycito, Sin.' };
 
-const updateThemeColorMeta = (isDarkTheme) => {
-  // Cambia dinámicamente la etiqueta theme-color sin el atributo media para forzar el color activo
-  let metaThemeColor = document.querySelector('meta[name="theme-color"]:not([media])');
-  if (!metaThemeColor) {
-    metaThemeColor = document.createElement('meta');
-    metaThemeColor.setAttribute('name', 'theme-color');
-    document.head.appendChild(metaThemeColor);
-  }
-  // bg-gray-100 = #f3f4f6 | bg-gray-900 = #111827
-  metaThemeColor.setAttribute('content', isDarkTheme ? '#111827' : '#f3f4f6');
-};
-
 onMounted(() => {
   // Check user preference for theme
   isDark.value = document.documentElement.classList.contains('dark') || 
@@ -127,7 +115,6 @@ onMounted(() => {
   } else {
     document.documentElement.classList.remove('dark');
   }
-  updateThemeColorMeta(isDark.value);
 
   // Load default location (Alhueycito, Sin.) on startup without asking for permissions
   loadDefaultLocation();
@@ -140,7 +127,6 @@ const toggleTheme = () => {
   } else {
     document.documentElement.classList.remove('dark');
   }
-  updateThemeColorMeta(isDark.value);
 };
 
 const onLocationSelected = async (location) => {
