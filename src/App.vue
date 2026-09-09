@@ -68,6 +68,9 @@
         </p>
       </div>
       
+      <!-- PWA Update Prompt -->
+      <ReloadPrompt />
+
       <!-- Footer with GitHub Link -->
       <footer class="mt-8 mb-4 text-center">
         <a 
@@ -94,6 +97,7 @@ import SearchBar from './components/SearchBar.vue';
 import CurrentWeather from './components/CurrentWeather.vue';
 import HourlyForecast from './components/HourlyForecast.vue';
 import DailyForecast from './components/DailyForecast.vue';
+import ReloadPrompt from './components/ReloadPrompt.vue';
 import { weatherService } from './services/weatherService';
 
 const isDark = ref(false);
@@ -106,6 +110,18 @@ const currentCoords = ref(null);
 // Default coordinates (Alhueycito, Sin.)
 const DEFAULT_COORDS = { lat: 25.6346498, lon: -108.0484821, name: 'Alhueycito, Sin.' };
 
+const updateThemeColorMeta = (isDarkTheme) => {
+  let metaThemeColor = document.querySelector('meta[name="theme-color"]:not([media])');
+  if (!metaThemeColor) {
+    metaThemeColor = document.createElement('meta');
+    metaThemeColor.setAttribute('name', 'theme-color');
+    document.head.appendChild(metaThemeColor);
+  }
+  // bg-gray-100 = #f3f4f6 | bg-gray-900 = #111827
+  // Modificar este valor fuerza a Android/Chrome a repintar la barra de estado
+  metaThemeColor.setAttribute('content', isDarkTheme ? '#111827' : '#f3f4f6');
+};
+
 onMounted(() => {
   // Check user preference for theme
   isDark.value = document.documentElement.classList.contains('dark') || 
@@ -115,6 +131,7 @@ onMounted(() => {
   } else {
     document.documentElement.classList.remove('dark');
   }
+  updateThemeColorMeta(isDark.value);
 
   // Load default location (Alhueycito, Sin.) on startup without asking for permissions
   loadDefaultLocation();
@@ -127,6 +144,7 @@ const toggleTheme = () => {
   } else {
     document.documentElement.classList.remove('dark');
   }
+  updateThemeColorMeta(isDark.value);
 };
 
 const onLocationSelected = async (location) => {
