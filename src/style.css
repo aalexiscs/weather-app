@@ -1,0 +1,29 @@
+@import "tailwindcss";
+
+/* Configurar modo oscuro por clase en Tailwind v4 */
+@custom-variant dark (&:is(.dark *));
+
+:root {
+  --bg-color: #f3f4f6;
+  --text-color: #111827;
+  --card-bg: #ffffff;
+  --card-text: #1f2937;
+  --border-color: #e5e7eb;
+}
+
+.dark {
+  --bg-color: #111827;
+  --text-color: #f9fafb;
+  --card-bg: #1f2937;
+  --card-text: #f3f4f6;
+  --border-color: #374151;
+}
+
+body {
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  transition: background-color 0.3s ease, color 0.3s ease;
+  min-height: 100vh;
+  margin: 0;
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+}

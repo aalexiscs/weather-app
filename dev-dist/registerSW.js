@@ -1,0 +1,1 @@
+if('serviceWorker' in navigator) navigator.serviceWorker.register('/weather-app/dev-sw.js?dev-sw', { scope: '/weather-app/', type: 'classic' })
