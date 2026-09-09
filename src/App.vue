@@ -67,6 +67,19 @@
           Busca una ciudad o permite el acceso a tu ubicación para ver el clima.
         </p>
       </div>
+      
+      <!-- Footer with GitHub Link -->
+      <footer class="mt-8 mb-4 text-center">
+        <a 
+          href="https://github.com/aalexiscs" 
+          target="_blank" 
+          rel="noopener noreferrer"
+          class="inline-flex items-center justify-center gap-2 text-sm text-gray-500 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white transition-colors duration-200"
+        >
+          <Github class="w-5 h-5" />
+          <span>aalexiscs</span>
+        </a>
+      </footer>
 
     </div>
   </div>
@@ -74,7 +87,7 @@
 
 <script setup>
 import { ref, onMounted, computed } from 'vue';
-import { Sun, Moon, Cloud, AlertTriangle, Map } from 'lucide-vue-next';
+import { Sun, Moon, Cloud, AlertTriangle, Map, Github } from 'lucide-vue-next';
 import SearchBar from './components/SearchBar.vue';
 import CurrentWeather from './components/CurrentWeather.vue';
 import HourlyForecast from './components/HourlyForecast.vue';

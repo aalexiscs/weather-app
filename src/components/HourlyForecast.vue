@@ -82,7 +82,8 @@ const next24Hours = computed(() => {
 });
 
 const formatHour = (timeString) => {
-  return format(new Date(timeString), 'HH:mm');
+  // 'h:mm a' formatea la hora en 12 horas con AM/PM (ej: 2:00 PM)
+  return format(new Date(timeString), 'h:mm a');
 };
 </script>
 

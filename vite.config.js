@@ -15,8 +15,8 @@ export default defineConfig({
         enabled: true
       },
       manifest: {
-        name: 'Weather App',
-        short_name: 'Weather',
+        name: 'Clima',
+        short_name: 'Clima',
         description: 'Aplicación del clima moderna y precisa',
         theme_color: '#000000',
         background_color: '#ffffff',
